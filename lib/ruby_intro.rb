@@ -12,9 +12,9 @@ end
 
 def max_2_sum(arr=[])
   # Check for one or no elements (edge cases)
-  if arr[0] == nil && arr[1] == nil
+  if arr.length == 0
     return 0
-  elsif arr[0] != nil && arr[1] == nil
+  elsif arr.length == 1
     return arr[0]
   end
 
@@ -38,8 +38,19 @@ def max_2_sum(arr=[])
   return greatest + secondGreatest
 end
 
-def sum_to_n? arr, n
-  # YOUR CODE HERE
+def sum_to_n?(arr = [], n)
+  if arr.length == 0
+    return false
+  end
+
+  numbers = Hash.new
+  arr.each do |num|
+    if numbers.has_key? (n - num)
+      return true
+    end
+    numbers[num] = 1
+  end
+  return false
 end
 
 # Part 2

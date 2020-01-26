@@ -10,6 +10,16 @@ def sum(arr=[])
   return total
 end
 
+def array_min(arr)
+  min = arr[0]
+  arr.each do |num|
+    if num < min
+      min = num
+    end
+  end
+  return min
+end
+
 def max_2_sum(arr=[])
   # Check for one or no elements (edge cases)
   if arr.length == 0
@@ -19,12 +29,7 @@ def max_2_sum(arr=[])
   end
 
   # Identify minimum element
-  min = arr[0]
-  arr.each do |num|
-    if num < min
-      min = num
-    end
-  end
+  min = array_min(arr)
 
   greatest = min
   secondGreatest = min
@@ -56,19 +61,59 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, " + name
 end
 
-def starts_with_consonant? s
-  # YOUR CODE HERE
+def starts_with_consonant?(s)
+  if s.length == 0
+    return false
+  end
+  return %w[b c d f h j k l m n p q r s t v w x y z].any? { |letter| letter == s[0].downcase }
 end
 
-def binary_multiple_of_4? s
-  # YOUR CODE HERE
+def binary_multiple_of_4?(s)
+  if s.length() == 0
+    return false
+  elsif !(s !~ /[^01]/)
+    return false
+  # Divisible by four if the last two digits are 0
+  elsif s[s.length - 2] == "0" && s[s.length - 1] == "0"
+    return true
+  else
+    return false
+  end
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  def initialize(isbn, price)
+    if (isbn.length == 0)
+      raise ArgumentError
+    elsif (price <= 0)
+      raise ArgumentError
+    end
+    @isbn = isbn
+    @price = price
+  end
+
+  def isbn
+    @isbn
+  end
+
+  def isbn=(isbn)
+    @isbn = isbn
+  end
+
+  def price
+    @price
+  end
+
+  def price=(price)
+    @price = price
+  end
+
+  def price_as_string()
+    return "$%.2f" % [price]
+  end
 end
